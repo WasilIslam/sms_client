@@ -1,0 +1,26 @@
+#components-layout-demo-responsive .logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.header {
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+
+.imgBox {
+    max-width: 100px;
+    min-width: 100px;
+}
+
+.imgBox img {
+    min-width: 100%;
+    max-width: 100%;
+}
+.mainbody{
+    width: 100%;
+    background-color: white;
+    padding: 30px;
+}
