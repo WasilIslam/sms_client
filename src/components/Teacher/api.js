@@ -1,6 +1,7 @@
 import axios from "axios";
-const base_api = "http://localhost:5000/teacher";
+const base_api = process.env.REACT_APP_API+"/teacher";
 
+console.log("API",process.env.REACT_APP_API)
 export const login = async ({id, password}) => {
   const {data: token} = await axios.post(`${base_api}/login`, {id, password});
   //saving in the session storage

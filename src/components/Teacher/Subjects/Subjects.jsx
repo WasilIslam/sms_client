@@ -1,46 +1,46 @@
 import React, {useEffect, useState} from "react";
-import {Button, Typography} from "antd";
+import {Button, List, Typography} from "antd";
 import {getSubjectsWithMarks} from "../api";
 import {Tabs} from "antd";
-import randomColor from "randomcolor"
-import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
+import randomColor from "randomcolor";
+import {useHistory} from "react-router";
+import {Link} from "react-router-dom";
 
 const {TabPane} = Tabs;
 const {Title} = Typography;
 
-const MarksBoxes=({marks,subjectId})=>{
-    return (
-        <div
-        >
+const MarksBoxes = ({marks, subjectId}) => {
+  const history = useHistory();
+  const pushNewTest = () => {
+    history.push("/teacher/newTest/" + subjectId);
+  };
+  return (
+    <div>
+      <List
+        size="large"
+        header={
+          <div style={{display:"flex",justifyContent:"space-between"}}>
+            <div>
             <Title level={4}>Tests Taken</Title>
-        {
-            marks.map((mark,index)=>{
-            return (
-                <Link to={`/teacher/test/${subjectId}/${mark}`}>
-                <li style={{margin:"10px",color:randomColor()}}>
-                    {(index+1)+". "+mark.slice(0,mark.indexOf("$"))}
-                </li>
-                </Link>
-            )
-            })
+            </div>
+            <div>
+              <Button style={{backgroundColor:"#3F51B5"}} type="primary" onClick={pushNewTest}>Add New Test</Button>
+            </div>
+          </div>
         }
-        </div>
-    )
-}
-
-
-const CreateNew=({subjectId})=>{
-    const history=useHistory();
-    const pushNewTest=()=>{
-        history.push("/teacher/newTest/"+subjectId);
-    }
-    return (
-        <div>
-            <Button size="large" type="primary" onClick={pushNewTest}>Add New Test</Button>
-        </div>
-    )
-}
+        bordered
+        dataSource={marks}
+        renderItem={(mark, index) => (
+          <List.Item>
+            <Link to={`/teacher/test/${subjectId}/${mark}`}>
+              <li>{mark.slice(0, mark.indexOf("$"))}</li>
+            </Link>
+          </List.Item>
+        )}
+      />
+    </div>
+  );
+};
 
 export default function Subjects() {
   const [subjects, setSubjects] = useState([]);
@@ -54,16 +54,15 @@ export default function Subjects() {
   }, []);
   return (
     <div>
-      <Title level={3} style={{color: "darkcyan"}}>
+      <Title level={3} style={{color: "#3F51B5"}}>
         Subjects
       </Title>
       <Tabs>
         {subjects.map((subject) => {
-            const v=subject.name + "-" + subject.classs + subject.section;
+          const v = subject.name + "-" + subject.classs + subject.section;
           return (
             <TabPane tab={v} key={v}>
-                <CreateNew subjectId={subject._id}/>
-                <MarksBoxes marks={subject.marks} subjectId={subject._id}/>
+              <MarksBoxes marks={subject.marks} subjectId={subject._id} />
             </TabPane>
           );
         })}

@@ -54,6 +54,7 @@ const Test = () => {
       render: (text, record, index) => {
         return (
           <Input
+          key={"student"+index}
             placeholder="Enter Marks Obtained"
             value={students[students.findIndex((st) => st.id === record.id)].obtainedMarks}
             onChange={(e) => {
@@ -88,7 +89,7 @@ const Test = () => {
       <Divider orientation="left">Total Marks</Divider>
       <Input value={totalMarks} onChange={(e) => setTotalMarks(e.target.value)} placeholder="Total Marks" style={{width: "30%", fontSize: "16px"}} />
       <Divider orientation="left">Individual Student Score</Divider>
-      <Table dataSource={enrollments} columns={ScoreColumn} />
+      <Table size="small" dataSource={enrollments} columns={ScoreColumn} />
       <Button type="primary" size="large" style={{marginLeft: "50%", transform: "translateX(-50%)"}} onClick={saveTest}>
         Save Test
       </Button>

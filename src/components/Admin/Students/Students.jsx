@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {getStudentsTable, getTeachersTable} from "../api";
-import {Button, Space, Table} from "antd";
-import { Link } from "react-router-dom";
+import {getStudentsTable} from "../api";
+import {Button, Space, Table, Typography} from "antd";
+import {Link} from "react-router-dom";
 const columns = [
   {
     title: "Id",
@@ -28,9 +28,7 @@ const columns = [
     key: "action",
     render: (text, record) => (
       <Space size="middle">
-        <Link
-          to={{pathname: "/admin/student/" + record._id}}
-        >
+        <Link to={{pathname: "/admin/student/" + record._id}}>
           <Button type="primary">Open</Button>
         </Link>
       </Space>
@@ -50,8 +48,10 @@ const Students = () => {
   return (
     <div>
       <div style={{padding: "20px"}}>
-        <h1 style={{color: "darkcyan"}}>My Students</h1>
-        <b>Total Students:</b> {studentsTable.length}
+        <Typography.Title level={3} style={{color: "#3F51B5"}}>
+          My Students
+        </Typography.Title>
+        <b>Total: </b> {studentsTable.length}
       </div>
       <Table dataSource={studentsTable} columns={columns} />;
     </div>

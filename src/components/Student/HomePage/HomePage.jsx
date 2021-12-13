@@ -91,7 +91,7 @@ export default function HomePage({student: {name, id, classs, section, address, 
   );
   return (
     <div>
-      <Title level={3} style={{color: "black"}}>
+      <Title level={3} style={{color: "#3F51B5"}}>
         Profile
       </Title>
       <Space direction="vertical" style={{width: "100%"}}>
