@@ -1,5 +1,6 @@
 import axios from "axios";
-const base_api = "http://localhost:5000/student";
+const base_api = process.env.REACT_APP_API+"/student";
+
 
 export const login = async ({id, password}) => {
   const {data: token} = await axios.post(`${base_api}/login`, {id, password});

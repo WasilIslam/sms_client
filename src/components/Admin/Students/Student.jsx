@@ -1,4 +1,4 @@
-import {Button, Divider, Input, Modal, Space} from "antd";
+import {Button, Divider, Input, Modal} from "antd";
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router";
 import {getStudentData, setStudentPassword} from "../api";

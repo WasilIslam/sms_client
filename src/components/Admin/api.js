@@ -1,5 +1,6 @@
 import axios from "axios";
-const base_api = "http://localhost:5000/admin";
+const base_api = process.env.REACT_APP_API+"/admin";
+
 
 export const login = async ({id, password}) => {
   const {data: token} = await axios.post(`${base_api}/login`, {id, password});
@@ -81,6 +82,6 @@ export const getTeacherData=async (id)=>{
 
 export const setStudentPassword=async(id,newpassword)=>{
   const token = sessionStorage.getItem("x-auth-token");
-  const result = await axios.post(`${base_api}/student/password`, {headers: {"x-auth-token": token,id,newpassword}});
+  const result = await axios.post(`${base_api}/student/password`,{id,newpassword}, {headers: {"x-auth-token": token}});
   return result.data;
 }

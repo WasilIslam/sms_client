@@ -4,8 +4,6 @@ import {
   KeyOutlined,
   LogoutOutlined,
   MenuFoldOutlined,
-  MoneyCollectFilled,
-  NumberOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import "./main.css";
@@ -13,10 +11,7 @@ import {Route, Switch, useHistory, useRouteMatch} from "react-router";
 import {useEffect, useState} from "react";
 import {isMobile} from "react-device-detect";
 import {Link} from "react-router-dom";
-import Accounts from "./Accounts/Accounts";
 import HomePage from "./HomePage/HomePage";
-import Marks from "./Marks/Marks";
-import Attendance from "./Attendance/Attendance";
 import {get, logout} from "./api";
 import ChangePassword from "./ChangePassword/ChangePassword";
 import Subjects from "./Subjects/Subjects";
@@ -85,7 +80,7 @@ function Body({setSiderStatus, teacher}) {
         <div className="mainbody" style={{padding: 24, minHeight: 360}}>
           <Switch>
             <Route path={`${path}/`} exact>
-              <HomePage />
+              <HomePage teacher={teacher}/>
             </Route>
             <Route path={`${path}/subjects`} exact>
               <Subjects />
@@ -115,6 +110,7 @@ export default function Main() {
     const getTeacher = async () => {
       try {
         const teacher = await get();
+        console.log(teacher)
         setTeacher(teacher);
       } catch (err) {
         history.push("/teacherlogin");

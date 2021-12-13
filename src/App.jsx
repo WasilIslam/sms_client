@@ -5,6 +5,7 @@ import TeacherLogin from "./components/Login/TeacherLogin";
 
 
 import "./App.css";
+import "./components/common/css/table.css"
 
 import {Switch, Route, BrowserRouter as Router} from "react-router-dom";
 import Home from "./components/Home/Home";

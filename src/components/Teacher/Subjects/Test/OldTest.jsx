@@ -80,7 +80,7 @@ const OldTest = () => {
   ];
   return (
     <div>
-      <Title level={3} style={{color: "darkorchid"}}>
+      <Title level={3} style={{color: "#3F51B5"}}>
         Test
       </Title>
       {location.state&&location.state.freshSaved&&<Alert type="success" message="Test Saved Successfully!!" showIcon closable/>}
@@ -93,7 +93,7 @@ const OldTest = () => {
       <Divider orientation="left">Total Marks</Divider>
       <Input value={totalMarks}onChange={e=>setTotalMarks(e.target.value)} placeholder="Total Marks" style={{width: "30%", fontSize: "16px"}} />
       <Divider orientation="left">Individual Student Score</Divider>
-      <Table dataSource={students} columns={ScoreColumn} />
+      <Table size="small" dataSource={students} columns={ScoreColumn} />
       <Button type="primary" size="large" style={{marginLeft:"50%",transform:"translateX(-50%)"}} onClick={UpdateTest}>Update Changes</Button>
       <div></div>
     </div>
